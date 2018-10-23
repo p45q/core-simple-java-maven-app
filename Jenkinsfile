@@ -19,14 +19,12 @@ pipeline {
           junit '**/*.xml'
         }
       }
-    stage('Build') {
+    stage('JDK 8 Build & Test') {
       steps {
-        sh 'mvn -B -DskipTests clean package'
-      }
-    }
-    stage('Test') {
-      steps {
-        sh 'mvn test'
+        container('maven-container') {
+          sh 'mvn -B -DskipTests clean package'
+          sh 'mvn test'
+        }
       }
       post {
         always { 
