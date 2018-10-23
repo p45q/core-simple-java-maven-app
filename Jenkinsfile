@@ -19,6 +19,7 @@ pipeline {
           junit '**/*.xml'
         }
       }
+    }
     stage('JDK 8 Build & Test') {
       steps {
         container('maven-container') {
@@ -39,4 +40,4 @@ pipeline {
     }
   }
 }
-}
+
